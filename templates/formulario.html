@@ -1,0 +1,47 @@
+{% extends "index.html" %}
+
+{% block contenido %}
+<br>
+<br>
+<br>
+<div class="border container">
+    <div class="mb-3 bg-dark">
+        <h2 class="text-center text-white">Formulario enviar correo</h2>
+    </div>
+    <div class="container">
+        <form action="/enviarCorreo" method="post" enctype="multipart/form-data" class="was-validated">
+            <div class="mb-3">
+                <label for="correoDestinatario" class="fw-bold">PARA:</label>
+                <input type="email" name="correoDestinatario" id="correoDestinatario" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="correoRemitente" class="fw-bold">DE:</label>
+                <input type="email" name="correoRemitente" id="correoRemitente" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="txtAsunto" class="fw-bold">ASUNTO:</label>
+                <input type="text" name="txtAsunto" id="txtAsunto" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="txtMensaje" class="fw-bold">MENSAJE:</label>
+                <textarea name="txtMensaje" id="txtMensaje" cols="30" rows="5" class="form-control" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="fileAnexo" class="fw-bold">ANEXO:</label>
+                <input type="file" name="fileAnexo" id="fileAnexo" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-success">ENVIAR</button>
+                <button type="button" class="btn btn-danger">CANCELAR</button>
+            </div>
+        </form>
+        <div>
+            {% if mensaje %}
+            <script>
+                Swal.fire("CORREO SEND", '{{mensaje}}', "success")
+            </script>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
